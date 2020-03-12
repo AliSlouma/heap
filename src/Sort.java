@@ -22,8 +22,7 @@ public class Sort <T extends Comparable<T>> implements ISort {
             }
         }
     }
-    void merge( ArrayList<T> arr, int l, int m, int r)
-    {
+    void merge( ArrayList<T> arr, int l, int m, int r) {
         int n1 = m - l + 1;
         int n2 = r - m;
         ArrayList<T> left = new ArrayList<>();
@@ -62,8 +61,7 @@ public class Sort <T extends Comparable<T>> implements ISort {
         }
     }
 
-    void sort(ArrayList arr, int l, int r)
-    {
+    void sort(ArrayList arr, int l, int r) {
         if (l < r)
         {
             int m = (l+r)/2;
