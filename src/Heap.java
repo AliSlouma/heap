@@ -20,31 +20,38 @@ public class Heap <T extends Comparable<T>> implements IHeap<T> ,Cloneable{
     public void swap(INode<T> node1,INode<T> node2){
         T temp = node1.getValue();
         node1.setValue(node2.getValue());
-        node2.setValue(node1.getValue());
+        node2.setValue(temp);
     }
 
     public void heapify(INode<T> node) {
 
-        if(node.getValue().compareTo(node.getLeftChild().getValue()) < 0 || node.getValue().compareTo(node.getRightChild().getValue() ) <0 ){
-            if(node.getLeftChild().getValue().compareTo(node.getRightChild().getValue())<0){
-                swap(node,node.getRightChild());
-                heapify(node.getRightChild());
+        if(node.getLeftChild() != null && node.getRightChild()!= null) {
+            if (node.getValue().compareTo(node.getLeftChild().getValue()) < 0 || node.getValue().compareTo(node.getRightChild().getValue()) < 0) {
+                if (node.getLeftChild().getValue().compareTo(node.getRightChild().getValue()) < 0) {
+                    swap(node, node.getRightChild());
+                    heapify(node.getRightChild());
 
-            }else {
-                swap(node,node.getLeftChild());
-                heapify(node.getLeftChild());
+                } else {
+                    swap(node, node.getLeftChild());
+                    heapify(node.getLeftChild());
+                }
+
             }
-
         }
 
     }
 
     public T extract() {
-        return null;
+        T root = (T) getRoot();
+        swap(getRoot(),nodes.get(size()-1));
+        nodes.remove(size()-1);
+        heapify(getRoot());
+        return root;
     }
 
     public void insert(T element) {
         INode tmep = new Node(nodes.size(),nodes);
+        tmep.setValue(element);
         nodes.add(tmep);
         int pos =nodes.size();
         int parent = pos/2;

@@ -14,11 +14,15 @@ public class Node<T extends Comparable<T>> implements INode {
         this.nodes = nodes;
     }
     public INode <T>getLeftChild() {
+        if(indx*2+1 >= nodes.size())
+            return null;
         return (INode<T>) nodes.get(indx*2+1);
     }
 
     @Override
     public INode <T> getRightChild() {
+        if(indx*2+2 >= nodes.size())
+            return null;
         return (INode<T>) nodes.get(indx*2+2);
     }
 
