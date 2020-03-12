@@ -1,26 +1,36 @@
 public class Node<T extends Comparable<T>> implements INode {
-    @Override
+
+    Node leftChild;
+    Node rightChild;
+    Node parent;
+    T value;
+
+    public Node(Node leftChild, Node rightChild) {
+        this.leftChild = leftChild;
+        this.rightChild = rightChild;
+    }
+
     public INode <T>getLeftChild() {
-        return null;
+        return this.leftChild;
     }
 
     @Override
     public INode <T> getRightChild() {
-        return null;
+        return this.rightChild;
     }
 
     @Override
     public INode <T>getParent() {
-        return null;
+        return this.parent;
     }
 
     @Override
     public T getValue() {
-        return null;
+        return this.value;
     }
 
-    @Override
-    public void setValue(Comparable value) {
 
+    public void setValue(Comparable value) {
+        this.value = (T) value;
     }
 }

@@ -1,34 +1,36 @@
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Heap <T extends Comparable<T>> implements IHeap<T> {
-    @Override
+
+    ArrayList<IHeap> nodes ;
+
+    public Heap(ArrayList<IHeap> nodes) {
+        this.nodes = nodes;
+    }
+
     public INode<T> getRoot() {
 
 
-        return null;
+        return (INode<T>) this.nodes.get(0);
     }
 
-    @Override
     public int size() {
-        return 0;
+        return this.nodes.size();
     }
 
-    @Override
     public void heapify(INode<T> node) {
 
     }
 
-    @Override
     public T extract() {
         return null;
     }
 
-    @Override
     public void insert(T element) {
 
     }
 
-    @Override
     public void build(Collection<T> unordered) {
 
     }
