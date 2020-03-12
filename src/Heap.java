@@ -2,18 +2,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class Heap <T extends Comparable<T>> implements IHeap<T> ,Cloneable{
-
     ArrayList<INode> nodes;
-
     public Heap() {
         this.nodes = new ArrayList<>();
     }
 
-    public INode<T> getRoot() {
+    public INode<T> getRoot(){
         return this.nodes.get(0);
     }
 
-    public int size() {
+    public int size(){
         return this.nodes.size();
     }
 
@@ -35,12 +33,10 @@ public class Heap <T extends Comparable<T>> implements IHeap<T> ,Cloneable{
                     swap(node, node.getLeftChild());
                     heapify(node.getLeftChild());
                 }
-
             }
         }
 
     }
-
     public T extract() {
         T root = (T) getRoot();
         swap(getRoot(),nodes.get(size()-1));
@@ -60,14 +56,18 @@ public class Heap <T extends Comparable<T>> implements IHeap<T> ,Cloneable{
             pos =parent;
             parent = pos/2;
         }
-
     }
 
-    public void build(Collection<T> unordered) {
+    public void build(Collection<T> unordered){
+        nodes.clear();
+        int size = unordered.size();
+        while (unordered.iterator().hasNext()){
+            this.nodes.add((INode) unordered.iterator().next());
+        }
 
-
-
-
-
+        int pos = size/2-1;
+        for(int i =pos; i>=0;i--){
+            heapify(nodes.get(i));
+        }
     }
 }
