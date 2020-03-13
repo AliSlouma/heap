@@ -1,11 +1,18 @@
+package eg.edu.alexu.csd.filestructure.sort;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import org.junit.Assert;
+import org.junit.Test;
 
-public class Heap <T extends Comparable<T>> implements IHeap<T> ,Cloneable{
+
+public class Heap <T extends Comparable<T>> implements IHeap<T>,Cloneable{
     ArrayList<INode<T>> nodes;
+    int size;
     public Heap() {
         this.nodes = new ArrayList<>();
+        int size = nodes.size()-1;
     }
     public INode<T> getRoot(){
         return this.nodes.get(0);
@@ -13,7 +20,7 @@ public class Heap <T extends Comparable<T>> implements IHeap<T> ,Cloneable{
     public int size(){
         return this.nodes.size();
     }
-    public void swap(INode<T> node1,INode<T> node2){
+    public void swap(INode<T> node1, INode<T> node2){
         T temp = node1.getValue();
         node1.setValue(node2.getValue());
         node2.setValue(temp);

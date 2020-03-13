@@ -1,7 +1,9 @@
+package eg.edu.alexu.csd.filestructure.sort;
+
 public interface IHeap<T extends Comparable<T>> extends Cloneable{
     /**
      * Return the root of the underlying binary tree
-     * @return INode wrapper for the root element of the tree
+     * @return eg.edu.alexu.csd.filestructure.sort.INode wrapper for the root element of the tree
      */
     INode<T> getRoot();
     /**
@@ -9,10 +11,7 @@ public interface IHeap<T extends Comparable<T>> extends Cloneable{
      * @return Number of actual elements in the tree
      */
     int size();
-    /**
-     * Runs in O(lg n) time, is the key to maintaining the max-heap property.
-     * @param heap the reference to the tree to be heapified
-     */
+
     void heapify(INode<T> node);
     /**
      * Extract the maximum element out of the heap, and remove it from the heap.

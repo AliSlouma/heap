@@ -1,11 +1,15 @@
+package eg.edu.alexu.csd.filestructure.sort;
+
 import java.util.ArrayList;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class Sort <T extends Comparable<T>> implements ISort {
 
 
     @Override
     public IHeap heapSort(ArrayList unordered) {
-        Heap sorted = new Heap();
+        IHeap sorted = new Heap();
         sorted.build(unordered);
 
         for (int i=sorted.size()-1; i>=0; i--)
@@ -87,7 +91,7 @@ public class Sort <T extends Comparable<T>> implements ISort {
         sort(unordered,0,unordered.size()-1);
     }
 
-    public static void main (String[] args){
+   /* public static void main (String[] args){
 
         Sort <Integer> s = new Sort<>();
         ArrayList<Integer> arr = new ArrayList<Integer>();
@@ -101,7 +105,7 @@ public class Sort <T extends Comparable<T>> implements ISort {
         s.heapSort(arr);
 
         int d = 2;
-    }
+    }*/
 
 
 }

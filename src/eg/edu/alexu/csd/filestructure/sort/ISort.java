@@ -1,3 +1,7 @@
+package eg.edu.alexu.csd.filestructure.sort;
+
+import eg.edu.alexu.csd.filestructure.sort.IHeap;
+
 public interface ISort<T extends Comparable<T>> {
     /**
      * Sorts the given collection of elements using heap-sort algorithm in-place,

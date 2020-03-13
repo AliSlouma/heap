@@ -1,4 +1,10 @@
+package eg.edu.alexu.csd.filestructure.sort;
+
+import eg.edu.alexu.csd.filestructure.sort.IHeap;
+
 import java.util.ArrayList;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class Node<T extends Comparable<T>> implements INode {
 
@@ -13,21 +19,21 @@ public class Node<T extends Comparable<T>> implements INode {
         this.indx = indx;
         this.nodes = nodes;
     }
-    public INode <T>getLeftChild() {
+    public INode<T> getLeftChild() {
         if(indx*2+1 >= nodes.size())
             return null;
         return (INode<T>) nodes.get(indx*2+1);
     }
 
     @Override
-    public INode <T> getRightChild() {
+    public INode<T> getRightChild() {
         if(indx*2+2 >= nodes.size())
             return null;
         return (INode<T>) nodes.get(indx*2+2);
     }
 
     @Override
-    public INode <T>getParent() {
+    public INode<T> getParent() {
         return(INode<T>) nodes.get(indx/2);
     }
 
