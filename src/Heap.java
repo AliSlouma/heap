@@ -1,26 +1,23 @@
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 public class Heap <T extends Comparable<T>> implements IHeap<T> ,Cloneable{
-    ArrayList<INode> nodes;
+    ArrayList<INode<T>> nodes;
     public Heap() {
         this.nodes = new ArrayList<>();
     }
-
     public INode<T> getRoot(){
         return this.nodes.get(0);
     }
-
     public int size(){
         return this.nodes.size();
     }
-
     public void swap(INode<T> node1,INode<T> node2){
         T temp = node1.getValue();
         node1.setValue(node2.getValue());
         node2.setValue(temp);
     }
-
     public void heapify(INode<T> node) {
 
         if(node.getLeftChild() != null && node.getRightChild()!= null) {
@@ -60,11 +57,13 @@ public class Heap <T extends Comparable<T>> implements IHeap<T> ,Cloneable{
 
     public void build(Collection<T> unordered){
         nodes.clear();
+        Iterator iterator = unordered.iterator();
         int size = unordered.size();
-        while (unordered.iterator().hasNext()){
-            this.nodes.add((INode) unordered.iterator().next());
+        for (int i=0;iterator.hasNext();i++){
+            INode<T> node= new Node(i,nodes);
+            node.setValue((T) iterator.next());
+            this.nodes.add(node);
         }
-
         int pos = size/2-1;
         for(int i =pos; i>=0;i--){
             heapify(nodes.get(i));
