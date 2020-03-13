@@ -35,10 +35,12 @@ public class Heap <T extends Comparable<T>> implements IHeap<T> ,Cloneable{
 
     }
     public T extract() {
-        T root = (T) getRoot();
+        T root = (T) getRoot().getValue();
+        if(nodes.size()!=1){
         swap(getRoot(),nodes.get(size()-1));
         nodes.remove(size()-1);
         heapify(getRoot());
+        }
         return root;
     }
 
