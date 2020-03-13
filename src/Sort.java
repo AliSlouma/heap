@@ -2,10 +2,20 @@ import java.util.ArrayList;
 
 public class Sort <T extends Comparable<T>> implements ISort {
 
-    public IHeap <T> heapSort(ArrayList unordered) {
-        return null;
-    }
 
+    @Override
+    public IHeap heapSort(ArrayList unordered) {
+        Heap sorted = new Heap();
+        sorted.build(unordered);
+
+        for (int i=sorted.size()-1; i>=0; i--)
+        {
+            sorted.extract();
+            sorted.heapify(sorted.getRoot());
+        }
+
+        return sorted;
+    }
 
     public void sortSlow(ArrayList unordered) {
         int size = unordered.size();
@@ -87,8 +97,8 @@ public class Sort <T extends Comparable<T>> implements ISort {
         arr.add(1);
        // s.sortSlow(arr);
 
-        s.sortFast(arr);
-
+//        s.sortFast(arr);
+        s.heapSort(arr);
 
         int d = 2;
     }
