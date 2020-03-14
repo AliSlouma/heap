@@ -6,19 +6,14 @@ import org.junit.Test;
 
 public class Sort <T extends Comparable<T>> implements ISort {
 
-
-    @Override
     public IHeap heapSort(ArrayList unordered) {
         IHeap sorted = new Heap();
         sorted.build(unordered);
-        ArrayList<T> arr = new ArrayList<>();
 
         for (int i=sorted.size()-1; i>=0; i--)
-        {
-            arr.add(0, (T) sorted.extract());
-           // sorted.heapify(sorted.getRoot());
+        {   unordered.remove(sorted.getRoot().getValue());
+            unordered.add(0, (T) sorted.extract());
         }
-        sorted.build(arr);
         return sorted;
     }
 
@@ -56,25 +51,23 @@ public class Sort <T extends Comparable<T>> implements ISort {
         {
             if ( left.get(i).compareTo(right.get(j))<=0)
             {
-                arr.remove(k);
-                arr.add(k,left.get(i++));
+                arr.set(k,left.get(i++));
             }
             else
             {
-                arr.remove(k);
-                arr.add(k,right.get(j++));
+                arr.set(k,right.get(j++));
             }
             k++;
         }
         while (i < n1)
         {
-            arr.remove(k);
-            arr.add(k++,left.get(i++));
+            arr.set(k,left.get(i++));
+            k++;
         }
         while (j < n2)
         {
-            arr.remove(k);
-            arr.add(k++,right.get(j++));
+            arr.set(k,right.get(j++));
+            k++;
         }
     }
 
@@ -100,24 +93,15 @@ public class Sort <T extends Comparable<T>> implements ISort {
         Sort<Integer> s = new Sort<>();
         ArrayList<Integer> arr = new ArrayList<Integer>();
         arr.add(4);
-        arr.add(3);
-        arr.add(5);
-        arr.add(2);
-        arr.add(3);
-        arr.add(5);
-        arr.add(7);
-        arr.add(43);
-        arr.add(535);
-        arr.add(535);
         arr.add(535555);
         arr.add(5353);
         arr.add(53555);
         //  s.sortSlow(arr);
 
-//        s.sortFast(arr);
-        //   s.heapSort(arr);
+       //s.sortFast(arr);
+          s.heapSort(arr);
 
-
+int f=5;
     }
 
 
