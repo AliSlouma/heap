@@ -11,9 +11,11 @@ public class Sort <T extends Comparable<T>> implements ISort {
         sorted.build(unordered);
 
         for (int i=sorted.size()-1; i>=0; i--)
-        {   unordered.remove(sorted.getRoot().getValue());
-            unordered.add(0, (T) sorted.extract());
+        {
+            sorted.extract();
+
         }
+        sorted.insert(-1);
         return sorted;
     }
 
