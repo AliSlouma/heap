@@ -7,10 +7,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class Node<T extends Comparable<T>> implements INode {
-
-    INode leftChild =null;
-    INode rightChild = null;
-    INode parent = null;
     T value;
     int indx;
     ArrayList<IHeap> nodes;
@@ -22,6 +18,8 @@ public class Node<T extends Comparable<T>> implements INode {
     public INode<T> getLeftChild() {
         if(indx*2+1 >= nodes.size())
             return null;
+
+       // if(nodes)
         return (INode<T>) nodes.get(indx*2+1);
     }
 
@@ -34,7 +32,9 @@ public class Node<T extends Comparable<T>> implements INode {
 
     @Override
     public INode<T> getParent() {
-        return(INode<T>) nodes.get(indx/2);
+        if(nodes.size()==1)
+            return null;
+        return(INode<T>) nodes.get((indx-1)/2);
     }
 
     @Override

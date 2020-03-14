@@ -11,29 +11,32 @@ public class Sort <T extends Comparable<T>> implements ISort {
     public IHeap heapSort(ArrayList unordered) {
         IHeap sorted = new Heap();
         sorted.build(unordered);
+        ArrayList<T> arr = new ArrayList<>();
 
         for (int i=sorted.size()-1; i>=0; i--)
         {
-            sorted.extract();
-            sorted.heapify(sorted.getRoot());
+            arr.add(0, (T) sorted.extract());
+           // sorted.heapify(sorted.getRoot());
         }
-
+        sorted.build(arr);
         return sorted;
     }
 
     public void sortSlow(ArrayList unordered) {
-        int size = unordered.size();
-        for (int i=0;i<size;i++){
-            for (int j=0;j<size-i-1;j++) {
-                T first = (T) unordered.get(size-j-i-1);
-                T second = (T) unordered.get(size-j-i -2);
-
-                if(first.compareTo(second) <0){
-                    T temp = (T) unordered.get(size-j-i-1);
-                    unordered.set(size-j-i-1,unordered.get(size-j-i-2));
-                    unordered.set(size-j-i-2 , temp);
-                }
-            }
+        if(unordered !=null){
+             int size = unordered.size();
+             for (int i=0;i<size-1;i++){
+                 for (int j=0;j<size-i-1;j++) {
+                     T first = (T) unordered.get(size-j-1);
+                     T second = (T) unordered.get(size-j-2);
+                    if(first.compareTo(second) <0){
+                     T temp = (T) unordered.get(size-j-1);
+                       unordered.set(size-j-1,unordered.get(size-j-2));
+                      unordered.set(size-j-2 , temp);
+                    }
+                 }
+             }
+             int g=2;
         }
     }
     void merge( ArrayList<T> arr, int l, int m, int r) {
@@ -88,24 +91,34 @@ public class Sort <T extends Comparable<T>> implements ISort {
     }
 
     public void sortFast(ArrayList  unordered) {
-        sort(unordered,0,unordered.size()-1);
+        if(unordered != null)
+         sort(unordered,0,unordered.size()-1);
     }
 
-   /* public static void main (String[] args){
+    public static void main (String[] args) {
 
-        Sort <Integer> s = new Sort<>();
+        Sort<Integer> s = new Sort<>();
         ArrayList<Integer> arr = new ArrayList<Integer>();
         arr.add(4);
         arr.add(3);
         arr.add(5);
-        arr.add(1);
-       // s.sortSlow(arr);
+        arr.add(2);
+        arr.add(3);
+        arr.add(5);
+        arr.add(7);
+        arr.add(43);
+        arr.add(535);
+        arr.add(535);
+        arr.add(535555);
+        arr.add(5353);
+        arr.add(53555);
+        //  s.sortSlow(arr);
 
 //        s.sortFast(arr);
-        s.heapSort(arr);
+        //   s.heapSort(arr);
 
-        int d = 2;
-    }*/
+
+    }
 
 
 }
