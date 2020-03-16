@@ -1,8 +1,13 @@
 package eg.edu.alexu.csd.filestructure.sort;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Random;
+
 import org.junit.Assert;
 import org.junit.Test;
+
+import javax.xml.crypto.Data;
 
 public class Sort <T extends Comparable<T>> implements ISort {
 
@@ -13,7 +18,6 @@ public class Sort <T extends Comparable<T>> implements ISort {
         for (int i=sorted.size()-1; i>=0; i--)
         {
             sorted.extract();
-
         }
         sorted.insert(-1);
         return sorted;
@@ -90,21 +94,30 @@ public class Sort <T extends Comparable<T>> implements ISort {
          sort(unordered,0,unordered.size()-1);
     }
 
-    public static void main (String[] args) {
+    public static void main(String [] args){
 
-        Sort<Integer> s = new Sort<>();
-        ArrayList<Integer> arr = new ArrayList<Integer>();
-        arr.add(4);
-        arr.add(535555);
-        arr.add(5353);
-        arr.add(53555);
-        //  s.sortSlow(arr);
+        ArrayList<Integer> arr = new ArrayList<>();
+        Random random = new Random();
+        for(int i=0;i<100000;i++){
+            Integer num = random.nextInt(1000000);
+            arr.add(num);
+        }
 
-       //s.sortFast(arr);
-          s.heapSort(arr);
+        ISort sort = new Sort();
+        Heap heap = new Heap();
+        Date date = new Date();
+        long timeBefore = date.getTime();
+        //heap = (Heap) sort.heapSort(arr);
+        sort.sortFast(arr);
+        date = new Date();
+        long timeAfter = date.getTime();
 
-int f=5;
+
+        System.out.println(timeAfter-timeBefore);
+
+
+
+
     }
-
 
 }

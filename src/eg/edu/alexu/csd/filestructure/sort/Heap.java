@@ -89,49 +89,27 @@ public class Heap <T extends Comparable<T>> implements IHeap<T>,Cloneable{
             }
         }
     }
-    public void build(Collection<T> unordered){
+    public void build(Collection<T> unordered) {
 
-        if(unordered != null){
-        nodes.clear();
-        Iterator<T> iterator = unordered.iterator();
-         mySize = unordered.size();
-         mysize.set(0,mySize);
+        if (unordered != null) {
+            nodes.clear();
+            Iterator<T> iterator = unordered.iterator();
+            mySize = unordered.size();
+            mysize.set(0, mySize);
 
-        for (int i=0;iterator.hasNext();i++){
-            INode<T> node= new Node(i,nodes,mysize);
-            node.setValue(iterator.next());
-            this.nodes.add(node);
+            for (int i = 0; iterator.hasNext(); i++) {
+                INode<T> node = new Node(i, nodes, mysize);
+                node.setValue(iterator.next());
+                this.nodes.add(node);
+            }
+
+            int pos = (mySize / 2) - 1;
+            for (int j = pos; j >= 0; j--) {
+                heapify(nodes.get(j));
+            }
+
+
         }
-
-        int pos = (mySize/2) -1 ;
-        for(int j =pos; j>=0;j--){ heapify(nodes.get(j)); }
-
-
-        }
-    }
-
-
-    public static void main (String[] args){
-
-        Heap h = new Heap();
-        ArrayList<Integer> arr = new ArrayList<Integer>();
-        arr.add(4);
-        arr.add(3);
-        arr.add(5);
-        arr.add(1);
-
-        h.insert(5);
-        h.insert(1);
-        h.insert(3);
-        h.insert(2);
-        h.insert(9);
-
-        h.extract();
-        h.extract();
-        h.extract();
-        h.extract();
-        h.extract();
-
-        int d = 2;
     }
 }
+
